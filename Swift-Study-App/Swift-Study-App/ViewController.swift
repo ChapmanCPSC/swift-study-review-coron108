@@ -34,18 +34,19 @@ class ViewController: UIViewController {
     func startTimer()
     {
         timerTextbox.text! = String(counter)
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.updateCounter), userInfo: nil, repeats: true)
     }
     
     func updateCounter(){
         if counter >= 0
         {
-            counter--
+            counter -= 1
             
             
             if counter == -1
             {
                 counter = 30
+                changeWord()
             }
             
             timerTextbox.text! = String(counter)
@@ -58,7 +59,6 @@ class ViewController: UIViewController {
         timerTextbox.text! = String(counter)
         
         changeWord()
-        conceptLabel.text! = currentConcept
         
     }
     
@@ -68,6 +68,8 @@ class ViewController: UIViewController {
         
         let randConcept = allConcepts[Int(rand()%23)]
         currentConcept = randConcept
+        
+        conceptLabel.text! = currentConcept
         
     }
 
